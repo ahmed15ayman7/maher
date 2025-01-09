@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:maher/components/ui/GradientButton.dart';
 import 'package:maher/components/ui/custom_text_field.dart';
+import 'package:maher/components/ui/gradient_border_button.dart';
+import 'package:maher/screens/auth/register_screen.dart';
 import 'package:maher/widgets/logo.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -44,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 30),
                 CustomTextField(
                   label: 'رقم الهاتف',
-                  prefix: '+966',
+                  prefix: '+966 |',
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
                 ),
@@ -58,7 +60,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        // Handle registration navigation
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RegisterScreen()));
                       },
                       child: const Text(
                         'سجل الآن',
@@ -85,19 +90,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                OutlinedButton(
+                GradientBorderButton(
                   onPressed: () {
-                    // Handle skip login
+                    print("iii");
                   },
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(
-                      color: Color(0xFFFF5BF8),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
                   child: const Text(
                     'تخطي تسجيل الدخول',
                     style: TextStyle(
