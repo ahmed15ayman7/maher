@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  video_player: ^2.5.0
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.16
 
 dev_dependencies:
   flutter_test:
@@ -17,9 +20,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  # assets:
-  #  - images/a_dot_burr.jpeg
+  assets:
+   - assets/images/
   #  - images/a_dot_ham.jpeg
+  fonts:
+    - family: CustomFont
+      fonts:
+        - asset: assets/fonts/29ltbukrabold.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
