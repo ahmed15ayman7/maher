@@ -6,12 +6,13 @@ class WelcomeContent extends StatelessWidget {
   final double imageHeight;
   final TextStyle? titleStyle;
   final TextStyle? descriptionStyle;
-
+  final bool isDark;
   const WelcomeContent({
     Key? key,
     required this.content,
     this.imageHeight = 200,
     this.titleStyle,
+    this.isDark = false,
     this.descriptionStyle,
   }) : super(key: key);
 
@@ -25,26 +26,28 @@ class WelcomeContent extends StatelessWidget {
             content.imagePath,
             height: imageHeight,
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           Text(
             content.title,
             textDirection: TextDirection.rtl,
             style: titleStyle ??
-                const TextStyle(
-                  fontSize: 24,
+                TextStyle(
+                  fontSize: 18,
+                  fontFamily: "CustomFont",
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: isDark ? Color(0xffFF5BF8) : Colors.white,
                 ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 15),
           Text(
             content.description,
             textAlign: TextAlign.center,
             textDirection: TextDirection.rtl,
             style: descriptionStyle ??
-                const TextStyle(
-                  fontSize: 16,
-                  color: Colors.white70,
+                TextStyle(
+                  fontFamily: "CustomFont",
+                  fontSize: 12,
+                  color: isDark ? Color(0xff263238) : Colors.white70,
                   height: 1.5,
                 ),
           ),

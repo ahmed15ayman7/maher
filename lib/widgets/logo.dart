@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LogoWidget extends StatelessWidget {
   final double height;
@@ -8,9 +7,9 @@ class LogoWidget extends StatelessWidget {
 
   const LogoWidget({
     Key? key,
-    this.height = 40,
-    this.topSpacing = 30,
-    this.bottomSpacing = 30,
+    this.height = 80,
+    this.topSpacing = 0,
+    this.bottomSpacing = 20,
   }) : super(key: key);
 
   @override
@@ -20,8 +19,8 @@ class LogoWidget extends StatelessWidget {
         top: topSpacing,
         bottom: bottomSpacing,
       ),
-      child: SvgPicture.asset(
-        'assets/images/logo.svg',
+      child: Image.asset(
+        'assets/images/logo.png',
         height: height,
       ),
     );

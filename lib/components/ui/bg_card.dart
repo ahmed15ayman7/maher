@@ -26,7 +26,9 @@ class BgCard extends StatelessWidget {
       padding: padding,
       decoration: BoxDecoration(
         color: isDark ? Colors.black : Colors.white,
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(borderRadius),
+            topRight: Radius.circular(borderRadius)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),

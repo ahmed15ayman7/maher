@@ -23,6 +23,10 @@ flutter:
   assets:
    - assets/images/
   #  - images/a_dot_ham.jpeg
+  fonts:
+    - family: CustomFont
+      fonts:
+        - asset: assets/fonts/29ltbukrabold.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
