@@ -62,14 +62,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 20),
-              const LogoWidget(height: 60),
-              const SizedBox(height: 20),
-              BgCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const SizedBox(height: 20),
+            const LogoWidget(height: 60),
+            const SizedBox(height: 20),
+            const Spacer(),
+            SingleChildScrollView(
+              child: BgCard(
                   isDark: true,
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -160,9 +162,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 }
                               : null,
                         ),
-                      ]))
-            ],
-          ),
+                      ])),
+            )
+          ],
         ),
       ),
     );

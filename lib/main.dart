@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:maher/screens/contact/contact_with_us_screen.dart';
-import 'package:maher/screens/error/error-no-fonnd-screen.dart';
-import 'package:maher/screens/error/error-no-network-screen.dart';
-import 'package:maher/screens/on-boarding/welcome_screen.dart';
+import 'package:maher/screens/auth/login_screen.dart';
+import 'package:maher/screens/auth/verify_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +36,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: ContactWithUsScreen(),
+      home: VerificationScreen(),
     );
   }
 }

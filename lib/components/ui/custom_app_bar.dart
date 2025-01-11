@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback? onBackPressed;
+  final bool showBackButton;
+  final String? image;
 
   const CustomAppBar({
     Key? key,
     required this.title,
     this.onBackPressed,
+    this.image,
+    this.showBackButton = true,
   }) : super(key: key);
 
   @override
@@ -34,18 +38,31 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             toolbarHeight: 70,
             backgroundColor: Colors.transparent,
             elevation: 0,
-            title: Text(
-              title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            title: Row(children: [
+              if (image != null) SizedBox(width: 60),
+              if (image != null)
+                Image.asset(
+                  '$image',
+                  width: 20,
+                ),
+              SizedBox(width: 10),
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: "CustomFont",
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-              onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
-            ),
+            ]),
+            leading: showBackButton
+                ? IconButton(
+                    icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                    onPressed:
+                        onBackPressed ?? () => Navigator.of(context).pop(),
+                  )
+                : null,
             centerTitle: true,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
