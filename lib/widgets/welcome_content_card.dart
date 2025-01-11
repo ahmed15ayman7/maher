@@ -21,23 +21,23 @@ class WelcomeContent extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
             content.imagePath,
             height: imageHeight,
           ),
           const SizedBox(height: 20),
-          Text(
-            content.title,
-            textDirection: TextDirection.rtl,
-            style: titleStyle ??
-                TextStyle(
-                  fontSize: 18,
-                  fontFamily: "CustomFont",
-                  fontWeight: FontWeight.bold,
-                  color: isDark ? Color(0xffFF5BF8) : Colors.white,
-                ),
-          ),
+          Text(content.title,
+              textDirection: TextDirection.rtl,
+              style: titleStyle ??
+                  TextStyle(
+                    fontSize: 18,
+                    fontFamily: "CustomFont",
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? Color(0xffFF5BF8) : Colors.white,
+                  ),
+              textAlign: TextAlign.center),
           const SizedBox(height: 15),
           Text(
             content.description,

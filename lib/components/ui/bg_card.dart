@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 class BgCard extends StatelessWidget {
   final Widget child;
   final bool isDark;
+  final bool isCustom;
   final EdgeInsetsGeometry padding;
   final double borderRadius;
   final double? width;
   final double? height;
-
   const BgCard({
     Key? key,
     required this.child,
     this.isDark = false,
+    this.isCustom = false,
     this.padding = const EdgeInsets.all(20),
     this.borderRadius = 20,
     this.width,
@@ -25,7 +26,11 @@ class BgCard extends StatelessWidget {
       height: height,
       padding: padding,
       decoration: BoxDecoration(
-        color: isDark ? Colors.black : Colors.white,
+        color: isCustom
+            ? Color(0xff263238)
+            : isDark
+                ? Color(0xff424347)
+                : Colors.white,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(borderRadius),
             topRight: Radius.circular(borderRadius)),
