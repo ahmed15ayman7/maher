@@ -24,8 +24,10 @@ class GradientButton extends StatelessWidget {
           gradient: LinearGradient(
             colors: !disabled
                 ? [
-                    Color(0xFF00D2FF), // Cyan
-                    Color(0xFFFF00FF), // Pink
+                    Color(0xFF00CED1),
+
+                    Color(0xFFFF5BF8),
+                    Color(0xFFC903C0), // Pink
                   ]
                 : [
                     Colors.black87, // Cyan
@@ -34,7 +36,7 @@ class GradientButton extends StatelessWidget {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -53,6 +55,7 @@ class GradientButton extends StatelessWidget {
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
+                fontFamily: "CustomFont",
                 fontWeight: FontWeight.bold,
               ),
             ),

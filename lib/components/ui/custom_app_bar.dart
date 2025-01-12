@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget {
   final String title;
   final VoidCallback? onBackPressed;
   final bool showBackButton;
@@ -17,33 +17,38 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 70,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF00E1D9),
-              Color(0xFFE100FF),
-            ],
-          ),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(20),
-          ),
+      height: 100,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF00E1D9),
+            Color(0xFFE100FF),
+          ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 0),
-          child: AppBar(
-            toolbarHeight: 70,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            title: Row(children: [
-              if (image != null) SizedBox(width: 60),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          if (showBackButton)
+            IconButton(
+              icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+              onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
+            ),
+          Row(
+            children: [
               if (image != null)
-                Image.asset(
-                  '$image',
-                  width: 20,
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Image.asset(
+                    '$image',
+                    width: 20,
+                  ),
                 ),
               SizedBox(width: 10),
               Text(
@@ -51,29 +56,41 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: "CustomFont",
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ]),
-            leading: showBackButton
-                ? IconButton(
-                    icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-                    onPressed:
-                        onBackPressed ?? () => Navigator.of(context).pop(),
-                  )
-                : null,
-            centerTitle: true,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
+            ],
+          ),
+          SizedBox(width: 48), // Placeholder for spacing when no back button
+        ],
+      ),
+    );
+  }
+}
+
+class PositionedAppBarExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          // Main content here
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: CustomAppBar(
+              title: "Custom Title",
+              image: 'assets/logo.png',
+              onBackPressed: () {
+                // Handle back button action
+                Navigator.of(context).pop();
+              },
             ),
           ),
-        ));
+        ],
+      ),
+    );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }

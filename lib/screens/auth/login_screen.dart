@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: const Text(
                         'تخطي تسجيل الدخول',
                         style: TextStyle(
-                          color: Color(0xFFFF5BF8),
+                          color: Color(0xffffffff),
                           fontSize: 16,
                         ),
                       ),

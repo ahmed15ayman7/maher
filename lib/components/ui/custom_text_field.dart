@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String label;
+  final String? label;
   final String? prefix;
+  final IconData? prefixIcon;
   final String? placeholder;
   final TextEditingController? controller;
   final TextInputType keyboardType;
   final bool obscureText;
+
   final String? Function(String?)? validator;
   final Color placeholderColor;
   final Color textColor;
+  final Color? prefixColor;
+  final Function(String)? onChanged;
 
   const CustomTextField({
     Key? key,
-    required this.label,
+    this.label,
     this.prefix,
+    this.prefixIcon,
     this.placeholder,
     this.controller,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
     this.validator,
+    this.onChanged,
     this.placeholderColor = const Color(0xFF666666),
     this.textColor = Colors.white,
+    this.prefixColor = Colors.white,
   }) : super(key: key);
 
   @override
@@ -30,7 +37,7 @@ class CustomTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          label,
+          '$label',
           style: TextStyle(
             color: textColor,
             fontSize: 16,
@@ -48,16 +55,17 @@ class CustomTextField extends StatelessWidget {
               ],
             ),
           ),
-          padding: const EdgeInsets.all(1),
+          padding: EdgeInsets.all(1),
           child: Container(
             decoration: BoxDecoration(
-              color: const Color(0xFF1E1E1E),
+              color: Color(0xFF1E1E1E),
               borderRadius: BorderRadius.circular(11),
             ),
             child: TextFormField(
               controller: controller,
               keyboardType: keyboardType,
               obscureText: obscureText,
+              onChanged: onChanged,
               validator: validator,
               textDirection: TextDirection.rtl,
               style: TextStyle(color: textColor),
@@ -69,12 +77,15 @@ class CustomTextField extends StatelessWidget {
                 border: InputBorder.none,
                 hintText: placeholder,
                 hintStyle: TextStyle(
+                  fontFamily: "CustomFont",
                   color: placeholderColor,
                   fontSize: 16,
                 ),
                 prefixText: prefix,
+                prefixIcon: Icon(prefixIcon),
                 prefixStyle: TextStyle(
-                  color: textColor,
+                  fontFamily: "CustomFont",
+                  color: prefixColor,
                   fontSize: 16,
                 ),
               ),

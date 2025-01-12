@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class GradientButton extends StatelessWidget {
+class GradientButton3 extends StatelessWidget {
   final String text;
   final VoidCallback? onTap; // Optional onTap
   final IconData? icon; // Optional icon
 
-  const GradientButton({
+  const GradientButton3({
     Key? key,
     required this.text,
     this.onTap, // Nullable onTap
@@ -25,6 +25,8 @@ class GradientButton extends StatelessWidget {
             colors: [
               Color(0xFF00CED1),
               Color(0xFFFF5BF8),
+              Color(0xFFFF5BF8),
+              Color(0xFFC903C0),
             ],
           ),
         ),

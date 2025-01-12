@@ -69,14 +69,14 @@ class ContactWithUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff1D1E23),
-      appBar: CustomAppBar(title: "تواصل معنا"),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              SizedBox(height: 20),
-              Text(
+        child: Column(
+          children: [
+            CustomAppBar(title: "تواصل معنا"),
+            SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
                 "نحن هنا لخدمتك في اي وقت واينما كنت",
                 style: TextStyle(
                   color: Colors.white,
@@ -85,25 +85,27 @@ class ContactWithUsScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              Text(
-                "لا تتردد في التواصل معنا اذا كان لديك اي استفسار\nاو واجهت اي صعوبة",
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 12,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 30),
-              ...contactButtons.map((contact) => ContactButton(
-                    text: contact.text,
-                    icon: contact.icon,
-                    style: contact.style,
-                    onPressed: () {
-                      // Handle button press based on contact.link
-                    },
-                  )),
-            ],
-          ),
+            ),
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  "لا تتردد في التواصل معنا اذا كان لديك اي استفسار\nاو واجهت اي صعوبة",
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 12,
+                  ),
+                  textAlign: TextAlign.center,
+                )),
+            SizedBox(height: 30),
+            ...contactButtons.map((contact) => ContactButton(
+                  text: contact.text,
+                  icon: contact.icon,
+                  style: contact.style,
+                  onPressed: () {
+                    // Handle button press based on contact.link
+                  },
+                )),
+          ],
         ),
       ),
     );
