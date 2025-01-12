@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:maher/components/ui/GradientButton.dart';
 import 'package:maher/components/ui/bg_card.dart';
+import 'package:maher/components/ui/bottomSheet.dart';
 import 'package:maher/components/ui/number_pad.dart';
 import 'package:maher/components/ui/verification_input.dart';
 import 'package:maher/models/welcome_content_model.dart';
+import 'package:maher/screens/home/home_screen.dart';
 import 'package:maher/screens/location/way_select_location_screen.dart';
 
 import 'package:maher/widgets/logo.dart';
 import 'package:maher/widgets/welcome_content_card.dart';
 
 class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({super.key});
+  final bool showBottomSheet;
+  const VerificationScreen({
+    Key? key,
+    this.showBottomSheet = false,
+  }) : super(key: key);
 
   @override
   State<VerificationScreen> createState() => _VerificationScreenState();
@@ -27,6 +33,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
     }
   }
 
+  @override
+  void initState() {
+    super.initState();
+    // Schedule the bottom sheet to be shown after the widget is fully initialized
+    if (widget.showBottomSheet) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _showSuccessBottomSheet(context);
+      });
+    }
+  }
+
   void _handleBackspace() {
     if (verificationCode.isNotEmpty) {
       setState(() {
@@ -37,48 +54,35 @@ class _VerificationScreenState extends State<VerificationScreen> {
   }
 
   void _showSuccessBottomSheet(BuildContext context) {
-    showModalBottomSheet(
+    CustomBottomSheet.show(
       context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      isDismissible: true,
-      builder: (context) => DraggableScrollableSheet(
-        initialChildSize: 0.5,
-        minChildSize: 0.5,
-        maxChildSize: 0.95,
-        builder: (_, controller) => BgCard(
-          isCustom: true,
-          child: SingleChildScrollView(
-            controller: controller,
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    WelcomeContent(
-                        content: WelcomeContentModel(
-                            imagePath: "assets/images/VerificationSuccess.png",
-                            title: 'تمت عملية التحقق بنجاح',
-                            description:
-                                'ابدا تجربتك الان بافضل تطبيق يقدم خدمات و منتجات للسيارات')),
-                    SizedBox(height: 30),
-                    GradientButton(
-                      text: 'ابدء تجربة الان',
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const WaySelectLocationScreen()));
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
+      builder: (sheetContext) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          WelcomeContent(
+              content: WelcomeContentModel(
+                  imagePath: "assets/images/VerificationSuccess.png",
+                  title: widget.showBottomSheet
+                      ? "تمت عملية حفظ الموقع بنجاح"
+                      : 'تمت عملية التحقق بنجاح',
+                  description: widget.showBottomSheet
+                      ? ""
+                      : 'ابدا تجربتك الان بافضل تطبيق يقدم خدمات و منتجات للسيارات')),
+          SizedBox(height: 30),
+          GradientButton(
+            text: widget.showBottomSheet
+                ? "اذهب للصفحة الرئيسية"
+                : 'ابدء تجربة الان',
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => widget.showBottomSheet
+                          ? HomeScreen()
+                          : WaySelectLocationScreen()));
+            },
           ),
-        ),
+        ],
       ),
     );
   }

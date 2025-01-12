@@ -64,9 +64,9 @@ class WaySelectLocationScreen extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => SelectLocationScreen(
-                latitude: position.latitude,
-                longitude: position.longitude,
-              ),
+                  // latitude: position.latitude,
+                  // longitude: position.longitude,
+                  ),
             ),
           );
         }
@@ -82,42 +82,62 @@ class WaySelectLocationScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFF1E1E1E),
-      appBar: CustomAppBar(
-        title: 'آلية تحديد موقعك',
-        showBackButton: true,
-      ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 40),
-              // Welcome Card with Image
-              WelcomeContent(
+        child: Column(
+          children: [
+            CustomAppBar(
+              title: 'آلية تحديد موقعك',
+              showBackButton: true,
+            ),
+            const SizedBox(height: 40),
+            // Welcome Card with Image
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: WelcomeContent(
                   content: WelcomeContentModel(
                       description: "",
                       imagePath: "assets/images/Location.png",
                       title: "اختر الية تحديد الموقع الخاص بك!")),
-              const SizedBox(height: 40),
-              // const Spacer(),
-              // Gradient Button
-              GradientButton(
-                onTap: () {
-                  _handleLocationPermission(context);
-                },
-                text: 'تفعيل الموقع',
-              ),
-              const SizedBox(height: 16),
-              // Gradient Border Button
-              GradientBorderButton(
-                onPressed: () {
-                  // Handle manual location
-                },
-                child: Text('تحديد موقعك يدويا'),
-              ),
-              const SizedBox(height: 40),
-            ],
-          ),
+            ),
+            const SizedBox(height: 40),
+            // const Spacer(),
+            // Gradient Button
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: GradientButton(
+                  onTap: () {
+                    _handleLocationPermission(context);
+                  },
+                  text: 'تفعيل الموقع',
+                )),
+            const SizedBox(height: 16),
+            // Gradient Border Button
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: GradientBorderButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SelectLocationScreen(
+                            // latitude: 0.0,
+                            // longitude: 0.0,
+                            ),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'تحديد موقعك يدويا',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontFamily: "CustomFont",
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )),
+            const SizedBox(height: 40),
+          ],
         ),
       ),
     );
