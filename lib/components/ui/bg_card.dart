@@ -14,7 +14,7 @@ class BgCard extends StatelessWidget {
     this.isDark = false,
     this.isCustom = false,
     this.padding = const EdgeInsets.all(20),
-    this.borderRadius = 20,
+    this.borderRadius = 40,
     this.width,
     this.height,
   }) : super(key: key);

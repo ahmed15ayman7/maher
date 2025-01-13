@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:maher/components/ui/bottomSheet.dart';
-import 'package:maher/components/ui/brand_of_car.dart';
-import 'package:maher/components/ui/color_of_car.dart';
+
 import 'package:maher/components/ui/custom_app_bar.dart';
 import 'package:maher/components/ui/custom_dropdown.dart';
+import 'package:maher/widgets/brand_of_car.dart';
+import 'package:maher/widgets/car-model-selection.dart';
+import 'package:maher/widgets/color_of_car.dart';
+import 'package:maher/widgets/number-of-cylinders.dart';
+import 'package:maher/widgets/types-oil.dart';
 
 class AddCarScreen extends StatefulWidget {
   @override
@@ -32,10 +36,11 @@ class _AddCarScreenState extends State<AddCarScreen> {
     CustomBottomSheet.show(
       isDismissible: true,
       context: context,
+      padding: EdgeInsets.all(0),
       initialChildSize: 0.65,
       builder: (sheetContext) {
         return Container(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -50,12 +55,12 @@ class _AddCarScreenState extends State<AddCarScreen> {
               label == 'ماركة السيارة'
                   ? CarBrandSelectionScreen()
                   : label == 'موديل السيارة'
-                      ? Text('موديل السيارة')
+                      ? CarModelSelection()
                       : label == 'لون السيارة'
                           ? CarColorSelectionScreen()
                           : label == 'نوع الوقود'
-                              ? Text('نوع الوقود')
-                              : Text('عدد الأسطوانات'),
+                              ? TypesOil()
+                              : NumberOfCylinders()
             ],
           ),
         );

@@ -36,14 +36,15 @@ class CustomTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text(
-          '$label',
-          style: TextStyle(
-            color: textColor,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
+        if (label != null)
+          Text(
+            '$label',
+            style: TextStyle(
+                color: textColor,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                fontFamily: "CustomFont"),
           ),
-        ),
         const SizedBox(height: 8),
         Container(
           decoration: BoxDecoration(
@@ -68,7 +69,7 @@ class CustomTextField extends StatelessWidget {
               onChanged: onChanged,
               validator: validator,
               textDirection: TextDirection.rtl,
-              style: TextStyle(color: textColor),
+              style: TextStyle(color: textColor, fontFamily: "CustomFont"),
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 16,

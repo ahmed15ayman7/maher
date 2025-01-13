@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:maher/components/ui/GradientButton2.dart';
+import 'package:maher/components/ui/WavyClipper.dart';
 import 'package:maher/components/ui/bg_card.dart';
 
 class CustomBottomSheet extends StatelessWidget {
@@ -8,6 +10,7 @@ class CustomBottomSheet extends StatelessWidget {
   final double minChildSize;
   final double maxChildSize;
   final bool isDismissible;
+  final bool isIcon;
   final Color? backgroundColor;
   final EdgeInsets? padding;
   final Function(BuildContext)? onDismiss;
@@ -20,6 +23,7 @@ class CustomBottomSheet extends StatelessWidget {
     this.minChildSize = 0.5,
     this.maxChildSize = 0.95,
     this.isDismissible = true,
+    this.isIcon = true,
     this.backgroundColor,
     this.padding = const EdgeInsets.symmetric(horizontal: 24),
     this.onDismiss,
@@ -32,6 +36,7 @@ class CustomBottomSheet extends StatelessWidget {
     double minChildSize = 0.5,
     double maxChildSize = 0.95,
     bool isDismissible = true,
+    bool isIcon = true,
     Color? backgroundColor,
     EdgeInsets? padding,
     Function(BuildContext)? onDismiss,
@@ -68,17 +73,47 @@ class CustomBottomSheet extends StatelessWidget {
         initialChildSize: initialChildSize,
         minChildSize: minChildSize,
         maxChildSize: maxChildSize,
-        builder: (_, controller) => BgCard(
-          isCustom: true,
-          child: SingleChildScrollView(
-            controller: controller,
-            child: SafeArea(
-              child: Padding(
-                padding: padding ?? EdgeInsets.zero,
-                child: child,
+        builder: (_, controller) => Stack(
+          children: [
+            // Custom Painted Background
+            Positioned(
+                top: 20,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: ClipPath(
+                  clipper: isIcon ? WavyClipper() : null,
+                  child: BgCard(
+                    padding: EdgeInsets.only(top: 30, left: 10, right: 10),
+                    isCustom: true,
+                    child: SingleChildScrollView(
+                      controller: controller,
+                      child: Padding(
+                        padding: padding ?? EdgeInsets.zero,
+                        child: child,
+                      ),
+                    ),
+                  ),
+                )),
+
+            // Close Button
+            if (isIcon)
+              Positioned(
+                top: 0,
+                left: 65,
+                right: 0,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    GradientButton2(
+                      radius: 50,
+                      icon: Icons.close,
+                      onTap: () => Navigator.pop(context),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
+          ],
         ),
       ),
     );
