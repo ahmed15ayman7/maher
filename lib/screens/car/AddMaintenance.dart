@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:maher/components/card/ImageUploadCard.dart';
@@ -7,7 +6,6 @@ import 'package:maher/components/ui/GradientButton.dart';
 import 'package:maher/components/ui/bottomSheet.dart';
 
 import 'package:maher/components/ui/custom_app_bar.dart';
-import 'package:maher/components/ui/custom_dropdown.dart';
 import 'package:maher/components/ui/custom_text_field.dart';
 import 'package:maher/widgets/brand_of_car.dart';
 import 'package:maher/widgets/car-model-selection.dart';

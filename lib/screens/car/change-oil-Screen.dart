@@ -1,9 +1,4 @@
-import 'dart:html';
-import 'dart:js';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:maher/components/card/DynamicCard.dart';
 import 'package:maher/components/ui/GradientButton.dart';
 import 'package:maher/components/ui/custom_app_bar.dart';
