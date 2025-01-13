@@ -13,6 +13,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 4; // Start with home selected
+
+  final List<String> _title = [
+    "صفحتي",
+    "سياراتي",
+    "عروضاتنا",
+    "حجوزاتي",
+    "الصفحة الرئيسية",
+  ];
   final List<Widget> _screens = [
     Center(
         child: Text('Screen 1',
@@ -40,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SingleChildScrollView(
             child: Column(
           children: [
-            CustomAppBar(title: "الصفحة الرئيسية"),
+            CustomAppBar(title: _title[_currentIndex]),
             _screens[_currentIndex],
           ],
         )),

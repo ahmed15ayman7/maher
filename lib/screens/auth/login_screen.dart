@@ -5,6 +5,7 @@ import 'package:maher/components/ui/custom_text_field.dart';
 import 'package:maher/components/ui/gradient_border_button.dart';
 import 'package:maher/components/ui/gradient_line.dart';
 import 'package:maher/screens/auth/register_screen.dart';
+import 'package:maher/screens/home/home_screen.dart';
 import 'package:maher/widgets/logo.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -135,7 +136,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 20),
                     GradientBorderButton(
                       onPressed: () {
-                        print("iii");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomeScreen()));
                       },
                       child: const Text(
                         'تخطي تسجيل الدخول',

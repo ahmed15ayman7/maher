@@ -20,7 +20,11 @@ class _SplashScreen1State extends State<SplashScreen1> {
         _size = MediaQuery.of(context).size.width *
             1.5; // Make sure it covers the screen diagonally
         _gradient = LinearGradient(
-          colors: [Colors.cyan, Colors.pinkAccent],
+          colors: [
+            Color(0xFF00CED1),
+            Color(0xFFFF5BF8),
+            Color(0xFFC903C0),
+          ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         );

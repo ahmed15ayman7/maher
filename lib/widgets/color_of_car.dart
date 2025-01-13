@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:maher/components/card/CarColorCard.dart';
 import 'package:maher/components/ui/custom_text_field.dart';
-import 'package:maher/components/ui/gradient_line.dart';
 
 class CarColorSelectionScreen extends StatelessWidget {
   final List<Map<String, dynamic>> carColors = [
@@ -49,48 +49,14 @@ class CarColorSelectionScreen extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: rowColors.map((colorInfo) {
-                    return Expanded(
-                      flex: 1,
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 8.0), // Add horizontal spacing
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Color(0xff2B414C),
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Icon(
-                                  Icons.water_drop,
-                                  color: colorInfo['color'],
-                                  size: 60,
-                                )),
-                            const SizedBox(height: 8),
-                            GradientLine(
-                              width: 100,
-                              isColor: true,
-                              color: Color(0xff263238),
-                            ),
-                            const SizedBox(height: 8),
-                            Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Text(
-                                  colorInfo['label'],
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 9,
-                                  ),
-                                )),
-                          ],
-                        ),
-                      ),
-                    );
+                    return SizedBox(
+                        width: MediaQuery.of(context).size.width / 3 - 20,
+                        child: CarColorCard(
+                          color: colorInfo['color'],
+                          label: colorInfo['label'],
+                        ));
                   }).toList(),
                 ),
               );

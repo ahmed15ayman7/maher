@@ -6,23 +6,23 @@ class WavyClipper extends CustomClipper<Path> {
     Path path = Path();
 
     path.lineTo(0, 0);
-    double offsetX = size.width / 14; // أضف إزاحة
+    double offsetX = 390 / 14; // أضف إزاحة
 
     path.cubicTo(
-      (size.width / 12) + offsetX, // حرك النقطة الأولى لليمين
+      (390 / 12) + offsetX, // حرك النقطة الأولى لليمين
       0,
-      (size.width / 12) + offsetX,
-      2 * size.height / 24,
-      (2 * size.width / 12) + offsetX,
-      2 * size.height / 24,
+      (390 / 12) + offsetX,
+      2 * 470 / 24,
+      (2 * 390 / 12) + offsetX,
+      2 * 470 / 24,
     );
 
     path.cubicTo(
-      (3 * size.width / 12) + offsetX, // حرك النقطة الثانية لليمين
-      2 * size.height / 24,
-      (3 * size.width / 12) + offsetX,
+      (3 * 390 / 12) + offsetX, // حرك النقطة الثانية لليمين
+      2 * 470 / 24,
+      (3 * 390 / 12) + offsetX,
       0,
-      (4 * size.width / 12) + offsetX, // حرك النقطة الثالثة لليمين
+      (4 * 390 / 12) + offsetX, // حرك النقطة الثالثة لليمين
       0,
     );
 

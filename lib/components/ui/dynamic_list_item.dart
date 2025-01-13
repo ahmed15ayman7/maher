@@ -19,40 +19,43 @@ class DynamicListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Model Name
-                  Container(
-                    width:
-                        MediaQuery.of(context).size.width * 0.3, // Fixed width
-                    child: Text(
-                      model,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+              Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 3.0, horizontal: 46),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Model Name
+                      Container(
+                        width: MediaQuery.of(context).size.width *
+                            0.3, // Fixed width
+                        child: Text(
+                          model,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
 
-                  // Description
-                  Container(
-                    width:
-                        MediaQuery.of(context).size.width * 0.3, // Fixed width
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      description,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.white70,
+                      // Description
+                      Container(
+                        width: MediaQuery.of(context).size.width *
+                            0.3, // Fixed width
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          description,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.white70,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
+                    ],
+                  )),
               GradientLine(width: 277)
             ]));
   }

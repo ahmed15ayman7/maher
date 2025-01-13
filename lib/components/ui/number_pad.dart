@@ -12,7 +12,7 @@ class NumberPad extends StatelessWidget {
 
   Widget _buildButton(String text, VoidCallback onPressed, {String? letters}) {
     return Container(
-      width: 80,
+      width: 95,
       height: 60,
       decoration: BoxDecoration(
         color: text == 'back' ? Colors.transparent : Colors.white,
@@ -67,38 +67,38 @@ class NumberPad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildButton('1', () => onNumberPress('1')),
               _buildButton('2', () => onNumberPress('2'), letters: 'ABC'),
               _buildButton('3', () => onNumberPress('3'), letters: 'DEF'),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 6),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildButton('4', () => onNumberPress('4'), letters: 'GHI'),
               _buildButton('5', () => onNumberPress('5'), letters: 'JKL'),
               _buildButton('6', () => onNumberPress('6'), letters: 'MNO'),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 6),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildButton('7', () => onNumberPress('7'), letters: 'PQRS'),
               _buildButton('8', () => onNumberPress('8'), letters: 'TUV'),
               _buildButton('9', () => onNumberPress('9'), letters: 'WXYZ'),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 6),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               const SizedBox(width: 80),
               _buildButton('0', () => onNumberPress('0')),

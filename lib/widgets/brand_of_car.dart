@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maher/components/card/CarColorCard.dart';
 import 'package:maher/components/ui/custom_text_field.dart';
 
 class CarBrandSelectionScreen extends StatelessWidget {
@@ -6,7 +7,7 @@ class CarBrandSelectionScreen extends StatelessWidget {
     'تويوتا (Toyota)',
     'بي ام دبليو (BMW)',
     'هيونداي (Hyundai)',
-    'مرسيدس بنز (Mercedes-Benz)',
+    'مرسيدس  (Mercedes)',
     'كيا (Kia)',
     'نيسان (Nissan)',
     'جي ام سي (GMC)',
@@ -17,12 +18,25 @@ class CarBrandSelectionScreen extends StatelessWidget {
     'لاند روفر (Land Rover)',
   ];
 
+  List<List<String>> _chunkList(List<String> list, int chunkSize) {
+    List<List<String>> chunks = [];
+    for (var i = 0; i < list.length; i += chunkSize) {
+      chunks.add(list.sublist(
+        i,
+        i + chunkSize > list.length ? list.length : i + chunkSize,
+      ));
+    }
+    return chunks;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final chunkedBrands = _chunkList(carBrands, 3);
+
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(5.0),
           child: CustomTextField(
             placeholder: 'ابحث عن اسم موديل السيارة',
             prefixIcon: Icons.search,
@@ -30,38 +44,23 @@ class CarBrandSelectionScreen extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Wrap(
-            spacing: 16.0, // Horizontal space between items
-            runSpacing: 16.0, // Vertical space between rows
-            alignment: WrapAlignment.start,
-            children: carBrands.map((brand) {
-              return SizedBox(
-                width: 90, // Fixed width for each item
-                child: Column(
-                  children: [
-                    Container(
-                      height: 70,
-                      width: 70,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        borderRadius: BorderRadius.circular(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+          child: Column(
+            children: chunkedBrands.map((rowBrands) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: rowBrands.map((brand) {
+                    return SizedBox(
+                      width: MediaQuery.of(context).size.width / 3 - 20,
+                      child: CarColorCard(
+                        imagePath: "assets/images/BMW.png",
+                        color: Colors.blue, // Replace with your logic
+                        label: brand,
                       ),
-                      child: Image.asset(
-                        'assets/marcedes.png',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      brand,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
+                    );
+                  }).toList(),
                 ),
               );
             }).toList(),

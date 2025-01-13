@@ -24,6 +24,7 @@ class GradientBorderButton extends StatelessWidget {
     this.gradientColors = const [
       Color(0xFF00CED1),
       Color(0xFFFF5BF8),
+      Color(0xFFC903C0),
     ],
     this.borderWidth = 1,
     this.borderRadius = 12,
