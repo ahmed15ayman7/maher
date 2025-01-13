@@ -4,12 +4,14 @@ class GradientButton2 extends StatelessWidget {
   final VoidCallback? onTap; // Optional onTap
   final IconData? icon; // Optional icon
   final String? text; // Optional icon
+  final double? radius; // Optional icon
   final bool isText; // Optional icon
 
   const GradientButton2({
     Key? key,
     this.onTap, // Nullable onTap
     this.icon, // Optional icon
+    this.radius = 16, // Optional icon
     this.text, // Optional icon
     this.isText = false, // Optional icon
   }) : super(key: key);
@@ -32,7 +34,9 @@ class GradientButton2 extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: radius == null
+              ? BorderRadius.circular(16)
+              : BorderRadius.circular(radius!),
         ),
         child: isText
             ? Text(

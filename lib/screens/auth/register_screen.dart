@@ -61,111 +61,128 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
       ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const SizedBox(height: 20),
-            const LogoWidget(height: 60),
-            const SizedBox(height: 20),
-            const Spacer(),
-            SingleChildScrollView(
-              child: BgCard(
-                  isDark: true,
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const Text(
-                          'تسجيل جديد',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        CustomTextField(
-                          label: 'الاسم',
-                          placeholder: 'اكتب اسمك بالكامل',
-                          controller: _nameController,
-                        ),
-                        const SizedBox(height: 10),
-                        CustomTextField(
-                          label: 'البريد الالكتروني',
-                          placeholder: 'example@gmail.com',
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                        const SizedBox(height: 10),
-                        CustomTextField(
-                          label: 'رقم الهاتف',
-                          prefix: '+966',
-                          controller: _phoneController,
-                          keyboardType: TextInputType.phone,
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          textDirection: TextDirection.rtl,
-                          children: [
-                            GradientCheckbox(
-                              value: _acceptTerms,
-                              onChanged: (value) {
-                                setState(() {
-                                  _acceptTerms = value ?? false;
-                                });
-                              },
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SafeArea(
+            child: Stack(
+              children: [
+                // Logo at the top
+                Positioned(
+                  top: 20,
+                  left: 0,
+                  right: 0,
+                  child: const LogoWidget(height: 60),
+                ),
+                // BgCard at the bottom 3/4 of the screen
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: BgCard(
+                    height: constraints.maxHeight *
+                        0.78, // 3/4 height of the screen
+                    isDark: true,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const Text(
+                            'تسجيل جديد',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
                             ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: RichText(
-                                textDirection: TextDirection.rtl,
-                                text: const TextSpan(
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
+                          ),
+                          const SizedBox(height: 20),
+                          CustomTextField(
+                            label: 'الاسم',
+                            placeholder: 'اكتب اسمك بالكامل',
+                            controller: _nameController,
+                          ),
+                          const SizedBox(height: 10),
+                          CustomTextField(
+                            label: 'البريد الالكتروني',
+                            placeholder: 'example@gmail.com',
+                            controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                          const SizedBox(height: 10),
+                          CustomTextField(
+                            label: 'رقم الهاتف',
+                            prefix: '+966',
+                            controller: _phoneController,
+                            keyboardType: TextInputType.phone,
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            textDirection: TextDirection.rtl,
+                            children: [
+                              GradientCheckbox(
+                                value: _acceptTerms,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _acceptTerms = value ?? false;
+                                  });
+                                },
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: RichText(
+                                  textDirection: TextDirection.rtl,
+                                  text: const TextSpan(
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                    ),
+                                    children: [
+                                      TextSpan(text: 'بالتسجيل أنت توافق على '),
+                                      TextSpan(
+                                        text: 'الشروط و الأحكام',
+                                        style: TextStyle(
+                                          color: Color(0xFFFF5BF8),
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                      ),
+                                      TextSpan(text: ' و أنك قد قرأت '),
+                                      TextSpan(
+                                        text: 'سياسة الخصوصية',
+                                        style: TextStyle(
+                                          color: Color(0xFFFF5BF8),
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  children: [
-                                    TextSpan(text: 'بالتسجيل أنت توافق على '),
-                                    TextSpan(
-                                      text: 'الشروط و الأحكام',
-                                      style: TextStyle(
-                                        color: Color(0xFFFF5BF8),
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                    TextSpan(text: ' و أنك قد قرأت '),
-                                    TextSpan(
-                                      text: 'سياسة الخصوصية',
-                                      style: TextStyle(
-                                        color: Color(0xFFFF5BF8),
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                  ],
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        GradientButton(
-                          text: 'تسجيل',
-                          onTap: !_acceptTerms
-                              ? () {
-                                  Navigator.push(
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          GradientButton(
+                            text: 'تسجيل',
+                            onTap: _acceptTerms
+                                ? () {
+                                    Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              VerificationScreen()));
-                                }
-                              : null,
-                        ),
-                      ])),
-            )
-          ],
-        ),
+                                        builder: (context) =>
+                                            VerificationScreen(),
+                                      ),
+                                    );
+                                  }
+                                : null,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

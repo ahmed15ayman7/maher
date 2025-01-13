@@ -1,24 +1,26 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:maher/components/card/ImageUploadCard.dart';
 import 'package:maher/components/ui/GradientButton.dart';
 import 'package:maher/components/ui/bottomSheet.dart';
 
 import 'package:maher/components/ui/custom_app_bar.dart';
 import 'package:maher/components/ui/custom_dropdown.dart';
+import 'package:maher/components/ui/custom_text_field.dart';
 import 'package:maher/widgets/brand_of_car.dart';
 import 'package:maher/widgets/car-model-selection.dart';
 import 'package:maher/widgets/color_of_car.dart';
 import 'package:maher/widgets/number-of-cylinders.dart';
 import 'package:maher/widgets/types-oil.dart';
 
-class AddCarScreen extends StatefulWidget {
+class AddMaintenanceScreen extends StatefulWidget {
   @override
-  _AddCarScreenState createState() => _AddCarScreenState();
+  _AddMaintenanceScreenState createState() => _AddMaintenanceScreenState();
 }
 
-class _AddCarScreenState extends State<AddCarScreen> {
+class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
   String? selectedBrand;
   String? selectedModel;
   String? selectedColor;
@@ -157,6 +159,7 @@ class _AddCarScreenState extends State<AddCarScreen> {
     );
   }
 
+  int selectedButton = 5000;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -167,103 +170,136 @@ class _AddCarScreenState extends State<AddCarScreen> {
           child: Column(
             children: [
               CustomAppBar(
-                title: 'آلية تحديد موقعك',
+                title: 'اضافة معلومات الصيانة',
                 showBackButton: true,
               ),
               const SizedBox(height: 16),
-              CustomDropdown(
-                label: 'ماركة السيارة',
-                selectedValue: selectedBrand,
-                onTap: () => onClickCustomDropdown(
-                  context,
-                  'ماركة السيارة',
-                  brands,
-                  selectedBrand,
-                  (value) {
-                    setState(() {
-                      selectedBrand = value;
-                    });
-                  },
-                ),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: CustomTextField(
+                    label: "ممشى السيارة",
+                    labelIcon: FontAwesomeIcons.gauge,
+                  )),
+              const SizedBox(height: 16),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: CustomTextField(
+                    label: "تاريخ اخر صيانة",
+                    labelIcon: FontAwesomeIcons.calendar,
+                  )),
+              const SizedBox(height: 16),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'صيانة',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "CustomFont"),
+                      ),
+                      Icon(
+                        FontAwesomeIcons.gear,
+                        size: 24,
+                        color: Colors.white,
+                      ),
+                    ],
+                  )),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildSelectableButton(5000),
+                  const SizedBox(width: 16),
+                  _buildSelectableButton(10000),
+                ],
               ),
               const SizedBox(height: 16),
-              CustomDropdown(
-                label: 'موديل السيارة',
-                selectedValue: selectedModel,
-                onTap: () => onClickCustomDropdown(
-                  context,
-                  'موديل السيارة',
-                  models,
-                  selectedModel,
-                  (value) {
-                    setState(() {
-                      selectedModel = value;
-                    });
-                  },
-                ),
-              ),
               const SizedBox(height: 16),
-              CustomDropdown(
-                label: 'لون السيارة',
-                selectedValue: selectedColor,
-                onTap: () => onClickCustomDropdown(
-                  context,
-                  'لون السيارة',
-                  colors,
-                  selectedColor,
-                  (value) {
-                    setState(() {
-                      selectedColor = value;
-                    });
-                  },
-                ),
-              ),
               const SizedBox(height: 16),
-              CustomDropdown(
-                label: 'نوع الوقود',
-                selectedValue: selectedFuelType,
-                onTap: () => onClickCustomDropdown(
-                  context,
-                  'نوع الوقود',
-                  fuelTypes,
-                  selectedFuelType,
-                  (value) {
-                    setState(() {
-                      selectedFuelType = value;
-                    });
-                  },
-                ),
-              ),
               const SizedBox(height: 16),
-              CustomDropdown(
-                label: 'عدد الأسطوانات',
-                selectedValue: selectedCylinders,
-                onTap: () => onClickCustomDropdown(
-                  context,
-                  'عدد الأسطوانات',
-                  cylinders,
-                  selectedCylinders,
-                  (value) {
-                    setState(() {
-                      selectedCylinders = value;
-                    });
-                  },
-                ),
-              ),
-              _buildPlateNumberSelector(),
-              _buildYearSelector(),
-              _buildMileageInput(),
-              _buildRegistrationButton(),
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
                   child: GradientButton(
-                    text: "اضافة سيارة",
+                    text: "اضافة صورة ",
                     icon: Icons.add_circle_outline,
+                  )),
+              const SizedBox(height: 16),
+              const SizedBox(height: 16),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'مثل صورة الفاتورة الخاصة بالصيانة الاخيرة',
+                        style: TextStyle(
+                            color: Color(0xff909090),
+                            fontSize: 11,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "CustomFont"),
+                      ),
+                    ],
+                  )),
+              const SizedBox(height: 16),
+              const SizedBox(height: 16),
+              const SizedBox(height: 16),
+              const SizedBox(height: 16),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: GradientButton(
+                    text: "اضافة ",
                   )),
               SizedBox(
                 height: 30,
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSelectableButton(int value) {
+    final bool isSelected = selectedButton == value;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedButton = value;
+        });
+      },
+      child: Container(
+        width: 170,
+        padding: const EdgeInsets.all(1),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF00CED1),
+              Color(0xFFFF5BF8),
+              Color(0xFFC903C0),
+            ],
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Color(0xff1D1E23)),
+          child: Center(
+            child: Text(
+              'كم $value ',
+              style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.purple,
+                  fontSize: 18,
+                  decoration: isSelected ? null : TextDecoration.underline,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "CustomFont"),
+            ),
           ),
         ),
       ),

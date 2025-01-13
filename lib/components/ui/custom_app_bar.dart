@@ -2,15 +2,25 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
+  final String? endText;
+  final IconData? endIcon;
   final VoidCallback? onBackPressed;
+  final VoidCallback? onActionPressed;
   final bool showBackButton;
+  final bool showEndText;
+  final bool showEndIcon;
   final String? image;
 
   const CustomAppBar({
     Key? key,
     required this.title,
+    this.endText,
+    this.endIcon,
     this.onBackPressed,
+    this.onActionPressed,
     this.image,
+    this.showEndText = false,
+    this.showEndIcon = false,
     this.showBackButton = true,
   }) : super(key: key);
 
@@ -36,11 +46,23 @@ class CustomAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           if (showBackButton)
-            IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-              onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
-            ),
+            Row(children: [
+              IconButton(
+                icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
+              ),
+              Text(
+                "رجوع",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: "CustomFont",
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ]),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (image != null)
                 Padding(
@@ -50,7 +72,7 @@ class CustomAppBar extends StatelessWidget {
                     width: 20,
                   ),
                 ),
-              SizedBox(width: 10),
+              if (image != null) SizedBox(width: 10),
               Text(
                 title,
                 style: TextStyle(
@@ -62,7 +84,35 @@ class CustomAppBar extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(width: 48), // Placeholder for spacing when no back button
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              if (showEndText)
+                Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: TextButton(
+                        onPressed: onActionPressed,
+                        child: Text(
+                          '$endText',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "CustomFont",
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ))),
+              if (showEndIcon)
+                Padding(
+                    padding: EdgeInsets.only(right: 15),
+                    child: IconButton(
+                        onPressed: onActionPressed,
+                        icon: Icon(
+                          endIcon,
+                          size: 24,
+                          color: Colors.white,
+                        ))) // Placeholder for spacing when no back button
+            ],
+          ),
         ],
       ),
     );

@@ -280,7 +280,7 @@ class _MapScreenState extends State<SelectLocationScreen> {
             showBackButton: true,
           ),
           Positioned(
-            top: 40,
+            top: 100,
             left: 16,
             right: 16,
             child: Padding(
